@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segnalazione Furti</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        form div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="datetime-local"], textarea { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        #map-container { margin-top: 30px; }
+        #map { height: 400px; width: 100%; border: 1px solid #ddd; }
+        .success-message { color: green; font-weight: bold; margin-top: 10px; }
+        /* Stili aggiuntivi per la mappa */
+    </style>
+</head>
+<body>
+
+    <h1>🚨 Segnalazione Furti (Web App)</h1>
+
+    <h2>Inserisci Nuova Segnalazione</h2>
+    <form id="the-form">
+        <div>
+            <label for="luogo">Luogo del Furto (Obbligatorio):</label>
+            <input type="text" id="luogo" placeholder="Indirizzo o località" required>
+            <input type="hidden" id="latitudine" name="latitudine">
+            <input type="hidden" id="longitudine" name="longitudine">
+        </div>
+
+        <div>
+            <label for="orario">Data e Ora del Furto (Obbligatorio):</label>
+            <input type="datetime-local" id="orario" name="orario" required>
+        </div>
+
+        <div>
+            <label for="targa">Targa del Veicolo Coinvolto (Opzionale):</label>
+            <input type="text" id="targa" name="targa" maxlength="10">
+        </div>
+
+        <div>
+            <label for="note">Note Aggiuntive:</label>
+            <textarea id="note" name="note" rows="4"></textarea>
+        </div>
+
+        <button type="submit">Invia Segnalazione</button>
+        <p id="response-message" class="success-message" style="display: none;"></p>
+    </form>
+
+    <hr>
+
+    <h2>Mappa delle Segnalazioni</h2>
+    <div id="map-container">
+        <div id="map">Mappa in caricamento...</div>
+    </div>
+
+    <script src="script.js"></script> 
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgKFwHhKy6vLEuuVnTWng5p1XxszvxqYE&callback=initMap"></script>
+</body>
+</html>
